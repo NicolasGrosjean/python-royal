@@ -32,35 +32,70 @@ en Python avec une qualité industrielle.
 - un shell
 - si possible un compte GitLab ou GitHub
 
+## Installation
+
+```bash
+uv sync
+```
+
+## [Activer l'environnement](https://docs.astral.sh/uv/pip/environments/#using-a-virtual-environment)
+
+Nécessaire notamment pour lancer les commandes en `task`
+
+**macOS/Linux** :
+
+```bash
+source .venv/bin/activate
+```
+
+**windows** :
+
+```bash
+.venv\Scripts\activate
+```
+
+## Tests
+
+```bash
+uv run pytest
+```
+
+ou
+
+```bash
+task test
+```
+
 ## Déroulement
 
 Il y a des fichiers de détecteur de rayon X/gamma sur ce repo, affichons-les !
 
-- [ ] Forker le projet [GitLab](https://gitlab.com/jgaffiot1/python-royal)
+- [x] Forker le projet [GitLab](https://gitlab.com/jgaffiot1/python-royal)
       ou [GitHub](https://github.com/Lenormju/python-royal) sur son compte perso
-- [ ] Cloner le fork sur sa machine perso
-- [ ] Installer uv
-- [ ] Initier un nouveau projet avec uv
-- [ ] Remplir le `pyproject.toml`
-- [ ] Ajouter une dépendance : [Streamlit](https://streamlit.io/)
-- [ ] Afficher le hello world Streamlit
-- [ ] Ajouter de nouvelles dépendances : pandas et plotly
-- [ ] Charger un fichier et afficher la courbe avec Streamlit
+- [x] Cloner le fork sur sa machine perso
+- [x] Installer uv
+- [x] Initier un nouveau projet avec uv
+- [x] Remplir le `pyproject.toml`
+- [x] Ajouter une dépendance : [Streamlit](https://streamlit.io/)
+- [x] Afficher le hello world Streamlit : `uv run streamlit hello`
+- [x] Ajouter de nouvelles dépendances (pandas et plotly) : `uv add pandas plotly`
+- [x] Charger un fichier et afficher la courbe avec Streamlit : `uv run streamlit run show_curve.py na22`
 
 Et maintenant, un peu d'outillage.
 
-- [ ] Installer ruff, mypy et pytest en dépendance de dev
-- [ ] Formatter son code avec ruff
-- [ ] Analyser son code avec ruff
-- [ ] Vérifier les types avec mypy
-- [ ] Écrire un test avec pytest
-- [ ] Intégrer ces pratiques dans son workflow avec son IDE
+- [x] Installer ruff, mypy et pytest en dépendance de dev : `uv add --group dev ruff mypy pytest`
+- [x] Formatter son code avec ruff : `uv run ruff format .` ou `task format`
+- [x] Analyser son code avec ruff : `uv run ruff check .` ou `task lint`
+- [x] Vérifier les types avec mypy : `uv run mypy .` ou `task mypy`
+- [x] Écrire un test avec pytest
+- [x] Intégrer ces pratiques dans son workflow avec son IDE
 
 Publions ce code.
 
-- [ ] Créer une release et son tag sur Git(Hub|Lab)
-- [ ] Créer un paquet (formats sdist et wheel) avec uv
-- [ ] Intégrer le tag dans le paquet avec versioningit
+- [x] Mettre à jour la version dans le pyproject.toml : `uvx --from=toml-cli toml set --toml-path=pyproject.toml project.version 1.0.0`
+- [x] Créer une release et son tag sur Git(Hub|Lab) : `git tag 1.0.0; git push origin tag 1.0.0`
+- [x] Créer un paquet (formats sdist et wheel) avec uv : Ajouter un `[build-system]` au `pyproject.toml` puis `uv build --package python_royal`
+- [x] Intégrer le tag dans le paquet avec versioningit
 - [ ] Publier ce code sur le package registry de Git(Hub|Lab)
 - [ ] (en option, construire une image Docker contenant le code et la publier)
 
